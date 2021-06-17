@@ -1,0 +1,109 @@
+/* color  negro #161d20;
+amarillo #fce130;
+blanco #ffff; 
+FONT POPPINS
+break 641*/
+
+/* General */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+background-color: black;}
+
+/* Main */
+
+.titulo{    
+    font-size: 20px;
+    font-weight: normal;
+    margin: 10px 10px;
+    text-align: center;
+    padding: 10px;
+    color: #fce130;
+}
+.rol{    
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px 10px;
+    text-align: center;
+    padding: 10px;
+}
+.main-style{
+    background-color:#161d20;
+    color:#e3ecfa;
+    margin: 25px auto;
+    
+}
+.main-form-container{
+    display: flex;
+    max-width: 350px;
+    margin: auto;
+    justify-content:space-around;
+    flex-wrap: wrap;
+}
+img {     
+    padding: 5px;
+    max-width: 100px;
+    height: auto;
+    display: block;
+}
+.name {
+    text-align: center;
+}
+.logout-form .lo-button { 
+    display: block;
+    text-align: center;
+    padding: 5px 15px;
+    margin: 10px auto;
+    font-size: 16px;
+    font-weight: 400;        
+    background-color:#fce130 ;
+    border-radius: 5px;
+}
+.lo-button2 { 
+    display: none;
+    text-align: center;
+    padding: 5px 15px;
+    margin: 10px auto;
+    font-size: 16px;
+    font-weight: 400;        
+    background-color:#fce130 ;
+    border-radius: 5px;
+}
+.lo-button3 { 
+    display: block;
+    text-align: center;
+    padding: 5px 15px;
+    margin: 10px auto;
+    font-size: 16px;
+    font-weight: 400;        
+    background-color:#fce130 ;
+    border-radius: 5px;
+}
+.button-a {
+    text-decoration: none;
+}
+.secret {
+    text-align: center;
+    width: 100%;
+}
+
+@media (min-width: 641px) {
+   
+    .main-forms-container{
+        display: flex;        
+        justify-content: space-around;
+        max-width: 500px;
+    }
+    .form-format {
+        height: 30px;
+        font-size: 18px;
+        background-color: #e3ecfa;
+        border: 2px solid #e3ecfa;
+        margin: 15px 10px;
+        text-align: left;
+    }
+}

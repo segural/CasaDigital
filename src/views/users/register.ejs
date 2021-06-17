@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Include Head -->
+<%- include('../partials/head', {title: 'Casa Digital', stylesheet: "/css/register.css"}) %>
+<body>
+<!-- Include Header -->
+<%- include ('../partials/header.ejs') %>
+    <main>
+        <div class="main-container">
+            <h2 class="fantasy-frase">Aprende con los mejores profesionales y forma parte de la mayor comunidad de estudios online</h2>
+            <div class="diferent-logins">
+                <div class="facebook-inic"><a href="#" class="link"><i class="fab fa-facebook"></i>Registrarte con Facebook </a></div>
+                <div class="google-log"><a href="#" class="link"><i class="fab fa-google"></i>Registrarte con Google</a></div>
+            </div>
+            <p class="body-format">O registrate con tu email</p>
+            <form  class="main-form" action="/users" method="POST" enctype="multipart/form-data">
+                <div class="main-forms-container">
+                    <div>    
+                        <input type="text" name="first_name" placeholder="Completa tu nombre" class="form-format" value="<%= locals.old && old.first_name %>">
+                        <% if (locals.errors && errors.first_name) { %>
+                            <p class="feedback"><%= errors.first_name.msg %></p>
+                        <% } %>
+                    </div>
+
+                    <div>    
+                        <input type="text" name="last_name" placeholder="Completa tu apellido" class="form-format" value="<%= locals.old && old.last_name %>">
+                        <% if (locals.errors && errors.last_name) { %>
+                            <p class="feedback"><%= errors.last_name.msg %></p>
+                        <% } %>
+                    </div>
+
+                    <div>    
+                        <input type="email" name="email" placeholder="Completa tu email" class="form-format" value="<%= locals.old && old.email %>">
+                        <% if (locals.errors && errors.email) { %>
+                            <p class="feedback"><%= errors.email.msg %></p>
+                        <% } %>
+                    </div>
+
+                    <div>                
+                        <input type="password" name="password" placeholder="Tu Contraseña" class="form-format" value="<%= locals.old && old.password %>">
+                        <% if (locals.errors && errors.password) { %>
+                            <p class="feedback"><%= errors.password.msg %></p>
+                        <% } %>
+                    </div>
+                    
+                    <div>
+                        <p class="body-format">¿Cuándo es tu cumpleaños?</p>
+                        <p class="bdy-text">*Tu fecha de nacimiento te dara una mejor experciencia en Casa Digital</p>
+                        <input type="date" name="birth_date" class="form-format" value="<%= locals.old && old.birth_date %>" id="date">                    
+                        <% if (locals.errors && errors.birth_date) { %>
+                            <p class="feedback"><%= errors.birth_date.msg %></p>
+                        <% } %>                        
+                    </div>
+                    <div >
+                        <p class="body-format">Selecciona una foto de perfil:</p>
+                        <input type="file" name="image" accept=".jpg" class="form-format" id="image">
+                        <% if (locals.errors && errors.image) { %>
+                            <p class="feedback"><%= errors.image.msg %></p>
+                        <% } %>
+                    </div>
+                </div>              
+                
+                <ul class="errores"></ul>        
+                
+                <div>
+                    <button type="submit" class="create-button">Crear cuenta</button>
+                </div>
+                
+            </form>
+            <div class="end-frase">
+            <p>¿Ya tienes cuenta? <a href="/users/login" class="link">Entrar</a></p>
+            </div>
+        </div>
+    </main>
+    <!-- Include Footer -->
+    <%- include ('../partials/footer.ejs') %>
+
+</body>
+</html>

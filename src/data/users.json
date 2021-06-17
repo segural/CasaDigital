@@ -1,0 +1,20 @@
+[
+ {
+  "id": 1,
+  "first_name": "Flavio",
+  "last_name": "Salinas",
+  "email": "flavio@hotmail.com",
+  "password": "$2b$10$2LRXUxYMjazn/i6.EyRuLuYoBoxsWCJt300XrZbXrudA5D6RBIsFq",
+  "birth_date": "1972-11-30",
+  "image": "img-1616548415996.jpg"
+ },
+ {
+  "id": 2,
+  "first_name": "Juan",
+  "last_name": "Pérez",
+  "email": "juan@gmail.com",
+  "password": "$2b$10$.u7FCu5Ug0WJ/UpGIG9tG.Wl7Ll2Mj3y4A1NHii0BT6IcNFHlaoQi",
+  "birth_date": "1986-08-11",
+  "image": "default-avatar.jpg"
+ }
+]

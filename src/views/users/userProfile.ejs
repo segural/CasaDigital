@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Include Head -->
+<%- include('../partials/head.ejs', {title: 'Casa Digital', stylesheet: "/css/userProfile.css"}) %>
+<body>
+<!-- Include Header -->
+<%- include ('../partials/header.ejs') %>
+  <main class="main-style">
+        <h2 class="titulo">Bienvenido a tu perfil <%= locals.userLogged.first_name %></h2>
+        <% if (locals.userLogged.role_id == 2) {%> 
+            <p class="rol">Eres admin del sitio</p>
+            <% } %>
+        
+        <% if (locals.userLogged != undefined) { %>
+
+            <div class="main-form-container">
+                <div class="col-izquierda">
+                    <img class="user-img" src="/images/users/<%= locals.userLogged.image %>" alt="Imagen del Usuario">
+                </div>
+                <div class="col-der">
+                    <div>
+                        <p class="name">Nombre Completo: <%= locals.userLogged.first_name %> <%= locals.userLogged.last_name %></p>
+                        <br>
+                        <p class="name">Email: <%= locals.userLogged.email %> </p>
+                        <br>
+                        <% if (locals.userLogged.role_id == 2) {%> 
+                        <input type="password" name="" id="secreto" placeholder="Ingrese palabra secreta" class="secret">
+                        <% } %>
+                        <% if (locals.userLogged.role_id == 2) {%> 
+                        <a href="/products/newProduct" class="button-a"><button type="submit" class="lo-button3" id="boton1">Nuevo curso</button></a>
+                        <% } %>
+                        <div>
+                            <a href="/products/productList" class="button-a"><button type="submit" class="lo-button2" id="boton">Listado de cursos</button></a>
+                        </div>
+                    </div> 
+                    <form class="logout-form" action="/users/logout" method="POST">
+                        <button type="submit" class="lo-button">Log out</button>
+                    </form>
+                </div>
+            </div>
+            
+        <% } else { %>        
+            <div>
+                <p>No estás loggeado</p>
+            </div>
+        <% } %>
+    <script src="/js/productList.js"></script>   
+    </main>
+  <!-- Include Footer -->  
+  <%- include ('../partials/footer.ejs') %>
+</body>
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Include Head -->
+<%- include('../partials/head', {title: 'Casa Digital', stylesheet: "/css/productDetail.css"}) %>
+<body>
+    <!-- Include Header -->
+    <%- include ('../partials/header.ejs') %>
+    <main>
+        <% if (locals.userLogged != undefined) { %>
+            <form  action="/products/add/<%= product.id %>/<%= locals.userLogged.id %> " method="POST">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-der">
+                            <section class="header-curso">
+                                <% if (product.top_seller == 1) { 	%> 
+                                <span class="top-seller">TOP VENTAS</span>
+                                <% } %>
+                                <h1 class="main-title"><%= product.course_title %></h1>
+                                <h4 class="main-subtitle-mobile"><%= product.short_description %></h4>
+                                <div class="teacher-badge">
+                                    <p class="teachers-text">
+                                        Un curso dictado por <%= product.course_owner %>
+                                    </p>
+                                </div>
+                                
+                                <div class="course-stats-mobile">
+                                    <div class="stat-lists">
+                                        <ul class="list-left">                                    
+                                            <li><i class="fas fa-volume-up"></i>
+                                                Audio: <%= product.audio.audioLang %> 
+                                            </li>
+                                            <li>
+                                                <i class="far fa-smile"></i>
+                                                Online y a tu ritmo
+                                            </li>                                    
+                                        </ul>
+                                        <ul class="list-right">                                    
+                                            <li>
+                                                <i class="far fa-closed-captioning"></i>
+                                                <% for (let i = 0; i < product.subtitles.length; i++) { %>
+                                                    <%= product.subtitles[i].ccLang %>
+                                                <% } %>
+                                            </li>
+                                            <li>
+                                                <i class="fas fa-infinity"></i>
+                                                Acceso ilimitado
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                            </section>
+                            <div class="gift">
+                                <div class="gift-button">
+                                    <i class="fas fa-gift"></i>
+                                    Reglar este curso
+                                </div>
+                            </div>
+                            <div class="course-image">
+                                <img src="/images/products/<%= product.image %>" alt="Video del curso">
+                            </div>
+        
+                            <section class="course-presentation">
+                                <h4 class="Presentation">Presentación</h4>
+                                
+                                <div class="content">
+                                    <h4 class="titulo"><%= product.short_description %></h4>
+                                    <p>
+                                        <%= product.long_description %>
+                                    </p>                            
+                                </div>                        
+                            </section>
+                            
+                            <section class="directed-to">
+                                <h4 class="directed">¿A quién está dirigido?</h4>
+                                <div class="directed-text">
+                                    <p>
+                                        <%= product.who_can %>
+                                    </p>
+                                </div>
+                            </section>
+                            <section class="requirements">
+                                <h4 class="required">Requisitos</h4>
+                                <div class="required-text">
+                                    <p>
+                                        <%= product.requirements %>
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
+                        
+                        <div class="comprar">
+                            <div class="price-col">
+                                <% let finalPrice = product.price - (product.price * product.discount / 100); %>
+                                <% if (product.discount > 0) { 	%>
+                                    <div class="price-badges">
+                                        <span class="badge"> REBAJAS </span>
+                                        <span class="price-discount"> <%= product.discount %>  % Dto. </span>
+                                        <span class="price-code"> <%= product.currency.currency %> </span>
+                                        <span class="discounted-price"> <%= product.price %></span>
+                                    </div>
+                                    <div class="item-price">
+                                        <span class="price-code"> <%= product.currency.currency %> </span>
+                                        <span class="price"> <%= toThousand(finalPrice.toFixed(0)) %></span>
+                                    </div>
+                                <% } else {  %>
+                                    <div class="item-price">
+                                        <span class="price-code"> <%= product.currency.currency %> </span>
+                                        <span class="price"> <%= toThousand(finalPrice.toFixed(0)) %></span>
+                                    </div>
+                                <% } %>   
+                            </div>
+                            
+                            <div class="cart-checkout">
+                                <a class="btn-checkout">
+                                    <i class="fas fa-shopping-cart"></i>                      
+                                    <button type="submit" class="btn-checkout">COMPRAR</button>
+                                </a>                        
+                            </div>
+        
+                        </div>
+        
+                    </div>
+                
+                </div>
+            </form>         
+        <% } else {%>
+            <div class="container">
+                <div class="row">
+                    <div class="col-der">
+                        <section class="header-curso">
+                            <% if (product.top_seller == 1) { 	%> 
+                            <span class="top-seller">TOP VENTAS</span>
+                            <% } %>
+                            <h1 class="main-title"><%= product.course_title %></h1>
+                            <h4 class="main-subtitle-mobile"><%= product.short_description %></h4>
+                            <div class="teacher-badge">
+                                <p class="teachers-text">
+                                    Un curso dictado por <%= product.course_owner %>
+                                </p>
+                            </div>
+                            
+                            <div class="course-stats-mobile">
+                                <div class="stat-lists">
+                                    <ul class="list-left">                                    
+                                        <li><i class="fas fa-volume-up"></i>
+                                            Audio: <%= product.audio.audioLang %> 
+                                        </li>
+                                        <li>
+                                            <i class="far fa-smile"></i>
+                                            Online y a tu ritmo
+                                        </li>                                    
+                                    </ul>
+                                    <ul class="list-right">                                    
+                                        <li>
+                                            <i class="far fa-closed-captioning"></i>
+                                            <% for (let i = 0; i < product.subtitles.length; i++) { %>
+                                                <%= product.subtitles[i].ccLang %>
+                                                <% } %>
+                                        </li>
+                                        <li>
+                                            <i class="fas fa-infinity"></i>
+                                            Acceso ilimitado
+                                        </li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </section>
+                        <div class="gift">
+                            <div class="gift-button">
+                                <i class="fas fa-gift"></i>
+                                Reglar este curso
+                            </div>
+                        </div>
+                        <div class="course-image">
+                            <img src="/images/products/<%= product.image %>" alt="Video del curso">
+                        </div>
+    
+                        <section class="course-presentation">
+                            <h4 class="Presentation">Presentación</h4>
+                            
+                            <div class="content">
+                                <h4 class="titulo"><%= product.short_description %></h4>
+                                <p>
+                                    <%= product.long_description %>
+                                </p>                            
+                            </div>                        
+                        </section>
+                        
+                        <section class="directed-to">
+                            <h4 class="directed">¿A quién está dirigido?</h4>
+                            <div class="directed-text">
+                                <p>
+                                    <%= product.who_can %>
+                                </p>
+                            </div>
+                        </section>
+                        <section class="requirements">
+                            <h4 class="required">Requisitos</h4>
+                            <div class="required-text">
+                                <p>
+                                    <%= product.requirements %>
+                                </p>
+                            </div>
+                        </section>
+                    </div>
+                    
+                    <div class="comprar">
+                        <div class="price-col">
+                            <% let finalPrice = product.price - (product.price * product.discount / 100); %>
+                            <% if (product.discount > 0) { 	%>
+                                <div class="price-badges">
+                                    <span class="badge"> REBAJAS </span>
+                                    <span class="price-discount"> <%= product.discount %>  % Dto. </span>
+                                    <span class="price-code"> <%= product.currency.currency %> </span>
+                                    <span class="discounted-price"> <%= product.price %></span>
+                                </div>
+                                <div class="item-price">
+                                    <span class="price-code"> <%= product.currency.currency %> </span>
+                                    <span class="price"> <%= toThousand(finalPrice.toFixed(0)) %></span>
+                                </div>
+                            <% } else {  %>
+                                <div class="item-price">
+                                    <span class="price-code"> <%= product.currency.currency %> </span>
+                                    <span class="price"> <%= toThousand(finalPrice.toFixed(0)) %></span>
+                                </div>
+                            <% } %>   
+                        </div>
+                        
+                        <div class="cart-checkout">
+                            <a class="btn-checkout" href="/users/login">
+                                <i class="fas fa-shopping-cart"></i>                      
+                                <button type="submit" class="btn-checkout">COMPRAR</button>
+                            </a>                        
+                        </div>
+    
+                    </div>
+    
+                </div>
+            
+            </div>
+        <% }%>
+        
+    </main>
+    <!-- Include Footer -->
+    <%- include("../partials/footer.ejs") %>
+    
+</body>
+</html>

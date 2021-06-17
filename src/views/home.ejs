@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Include Head -->
+<%- include('partials/head.ejs', {title: 'Casa Digital', stylesheet: "/css/homestyle.css"}) %>
+<body>
+<!-- Include Header -->
+<%- include ('./partials/header.ejs') %>
+  <main>
+    <div class="main-contenedor">
+      <div class="carrousel">
+        <img src="/images/products/sale2.jpg" class="responsive-img">
+      </div>
+      <div class="div-separadores">
+        <p class="separadores" style="color: #fce130;">CATEGORIAS</p>
+      </div>
+      <div class="row">
+        <div class="column tooltip">
+          <a href="/products/Desarrollo"><img class="responsive-img" src="/images/products/desarrollo.jpg" alt=""></a>
+          <span class="tooltiptext">
+            <div class="course-title">DESARROLLO</div>
+          </span>
+        </div>
+        <div class="column tooltip">
+          <a href="/products/Fotografía"><img class="responsive-img" src="/images/products/fotografia.jpg" alt=""></a>
+          <span class="tooltiptext">
+            <div class="course-title">FOTOGRAFIA</div>
+          </span>
+        </div>
+        <div class="column tooltip">
+          <a href="/products/Finanzas"><img class="responsive-img" src="/images/products/finanzas.jpg" alt=""></a>
+          <span class="tooltiptext">
+            <div class="course-title">FINANZAS</div>
+          </span>
+        </div>
+        <div class="column tooltip">
+          <a href="/products/Excel"><img class="responsive-img" src="/images/products/personal.jpg" alt=""></a>
+          <span class="tooltiptext">
+            <div class="course-title">EXCEL</div>
+          </span>
+        </div>
+      </div>
+      <div class="div-separadores">
+        <p class="separadores">Novedades en la Casa Digital</p>
+      </div>
+      <div class="row">
+        <% let counter = 0 %>
+        <% for (product of products) {%>
+          <% if (counter < 4) { 	%>
+            <div class="column tooltip">
+              <a class="link" href="/products/<%= product.id %>/productDetail"><img class="responsive-img" src="/images/products/<%= product.image %>" alt="Imagen del curso"></a>
+              <span class="tooltiptext">
+                <div class="course-title"><%= product.course_title %></div>
+                <div class="teacher-badge">
+                  <p class="teachers-text">
+                      Dictado por: <%= product.course_owner %>
+                  </p>
+                </div>
+                <div class="audio"><i class="fas fa-volume-up"></i>
+                  Audio: <%= product.audio.audioLang %> 
+                </div>
+                <div class="subtitle">
+                  <i class="far fa-closed-captioning"></i>
+                    <% for (let i = 0; i < product.subtitles.length; i++) { %>
+                      <%= product.subtitles[i].ccLang %>
+                    <% } %>
+                    </div>
+                <div class="price-col">
+                  <% let finalPrice = product.price - (product.price * product.discount / 100); %>
+                  <% if (product.discount > 0) { 	%>
+                      <div class="price-badges">
+                          <span class="badge"> REBAJAS </span>
+                          <span class="price-discount"> <%= product.discount %>  % Dto. </span>
+                          <span class="price-code"> <%= product.currency.currency %> </span>
+                          <span class="discounted-price"> <%= product.price %></span>
+                      </div>
+                      <div class="item-price">
+                          <span class="price-code"> <%= product.currency.currency %> </span>
+                          <span class="price"> <%= toThousand(finalPrice.toFixed(0)) %></span>
+                      </div>
+                  <% } else {  %>
+                      <div class="item-price">
+                          <span class="price-code"> <%= product.currency.currency %> </span>
+                          <span class="price"> <%= toThousand(finalPrice.toFixed(0)) %></span>
+                      </div>
+                  <% } %>   
+                </div>
+              </span>
+            </div>
+          <% counter++ } %>
+        <% } %>
+      </div>
+      <div class="div-separadores">
+        <p class="separadores">Lo Mas Vendido</p>
+      </div>
+      <div class="row">
+        <% for (product of products) {%>
+          <% if (product.top_seller == 1) { 	%>
+            <div class="column tooltip">
+              <a class="link" href="/products/<%= product.id %>/productDetail"><img class="responsive-img" src="/images/products/<%= product.image %>" alt="Imagen del curso"></a>
+              <span class="tooltiptext">
+                <div class="course-title"><%= product.course_title %></div>
+                <div class="teacher-badge">
+                  <p class="teachers-text">
+                      Dictado por: <%= product.course_owner %>
+                  </p>
+                </div>
+                <div class="audio"><i class="fas fa-volume-up"></i>
+                  Audio: <%= product.audio.audioLang %> 
+                </div>
+                <div class="subtitle">
+                  <i class="far fa-closed-captioning"></i>
+                    <% for (let i = 0; i < product.subtitles.length; i++) { %>
+                      <%= product.subtitles[i].ccLang %>
+                    <% } %>
+                    </div>
+                <div class="price-col">
+                  <% let finalPrice = product.price - (product.price * product.discount / 100); %>
+                  <% if (product.discount > 0) { 	%>
+                      <div class="price-badges">
+                          <span class="badge"> REBAJAS </span>
+                          <span class="price-discount"> <%= product.discount %>  % Dto. </span>
+                          <span class="price-code"> <%= product.currency.currency %> </span>
+                          <span class="discounted-price"> <%= product.price %></span>
+                      </div>
+                      <div class="item-price">
+                          <span class="price-code"> <%= product.currency.currency %> </span>
+                          <span class="price"> <%= toThousand(finalPrice.toFixed(0)) %></span>
+                      </div>
+                  <% } else {  %>
+                      <div class="item-price">
+                          <span class="price-code"> <%= product.currency.currency %> </span>
+                          <span class="price"> <%= toThousand(finalPrice.toFixed(0)) %></span>
+                      </div>
+                  <% } %>   
+                </div>
+              </span>
+            </div>
+          <% } %>
+        <% } %>
+      </div>
+      <div class="div-separadores">
+        <p class="separadores">Comunidad</p>
+      </div>
+      <div class="row">
+        <div class="column">
+          <a href="/products/community/Javier Gómez"><img class="responsive-img" src="/images/Comunity_01.jpg" alt=""></a>
+        </div>
+        <div class="column">
+          <a href="/products/community/Juan Gabriel Gomila Salas"><img class="responsive-img" src="/images/Comunity_02.jpg" alt=""></a>
+        </div>
+        <div class="column">
+          <a href="/products/community/Fabián Schwartz"><img class="responsive-img" src="/images/Comunity_03.jpg" alt=""></a>
+        </div>
+        <div class="column">
+          <a href="/products/community/Diego López"><img class="responsive-img" src="/images/Comunity_04.jpg" alt=""></a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- Include Footer -->
+  <%- include ('./partials/footer.ejs') %>
+</body>
+</html>

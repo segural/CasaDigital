@@ -1,0 +1,179 @@
+/* header */
+header {
+    background-color: black;    
+}
+.main-header {
+    display: flex;
+    color: #e3ecfa;
+    max-width: 1200px;
+    margin: auto;
+}
+.logo {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+}
+.main-navbar{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+} 
+.main-navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.text-nav {
+    text-decoration: none;
+    color: #e3ecfa;
+    font-size: 10px;
+    margin-right: 15px;
+    display: none;
+}
+.text-nav:hover {
+    border-bottom: #fce130 4px solid;
+}
+.text-nav-1 {
+    background-color: #e3ecfa;
+    text-decoration: none;
+    color: #000000;
+    font-size: 15px;
+    margin-right: 15px;
+    display: none;
+    width: 40%;
+}
+.main-navbar i {
+    color: #e3ecfa;
+    font-size: 15px;
+    margin: 0 10px;
+}
+.navbar i:active {
+    border-bottom: #fce130 4px solid;
+}
+.navbar ul{
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    height: 65px;
+}
+.navbar li{
+    margin: 0px;
+}
+.login {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    margin:0 5px;
+    font-size: 10px;   
+}
+.loginHidden {
+    display: none;
+}
+.login-parrafo {
+    margin: 10px;
+    align-self: auto;
+    color: #e3ecfa;
+}
+.login i {
+    font-size: 30px;
+}
+
+.login img {
+    width: 40px;
+}
+
+.login button {
+    color: #e3ecfa;
+    background-color: black;
+    padding: 0 10px;
+    border-style: none;
+    width: fit-content;
+}
+.search {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.search .buttons{
+    border: none;
+}
+
+/* footer */
+footer {
+    background-color: black;
+    width: 100%;
+    height: 170px;
+}
+.main-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+.logo-footer {
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+}
+.footer-redes {
+    color: #e3ecfa;
+    font-size: 20px;
+    max-width: 250px;
+    font-weight: 200;
+    text-align: justify;
+}
+.disclaimer {
+    color: #e3ecfa;
+    font-size: 8px;
+    max-width: 250px;
+    font-weight: 200;
+    text-align: center;
+    margin-top: 20px;
+}
+.politicas a {
+    color: #e3ecfa;
+    font-size: 8px;
+    max-width: 250px;
+    font-weight: 200;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* responsive */
+@media (min-width: 700px) {
+    .main-navbar i {
+        margin: 0 3px;
+    }
+    .text-nav {
+        display: inline-block;
+    }
+    .text-nav-1 {
+        display: inline-block;
+        width: 50%;
+    }
+    .text-nav {
+        font-size: 10px;
+    }
+}
+@media (min-width: 805px) {
+    .text-nav {
+        font-size: 15px;
+    }
+    .login {
+        font-size: 15px;
+    }
+    .text-nav-1 {
+        width: 70%;
+    }
+}
+@media (min-width: 900px) {
+    .text-nav-1 {
+        width: 100%;
+    }
+}
+

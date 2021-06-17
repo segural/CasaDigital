@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Include Head -->
+<%- include('../partials/head', {title: 'Casa Digital', stylesheet: "/css/newProduct.css"}) %>
+<body>
+    <!-- Include Header -->
+    <%- include ('../partials/header.ejs') %>
+
+    <main class="main-style">       
+        <h2 class="frase">Completa los datos para dar de alta el curso online:</h2>
+
+            <form  class="main-form" action="/products" method="POST" enctype="multipart/form-data">
+                <div class="main-forms-container">
+                    <div class="form-box">    
+                        <input type="text" name="course_title" autocomplete="off" 
+                        placeholder="Titulo del curso" class="form-format" value="<%= locals.old && old.course_title %>">
+                        <% if (locals.errors && errors.course_title) { %>
+                            <p class="feedback"><%= errors.course_title.msg %></p>
+                        <% } %>
+                    </div>
+                    
+                    <div class="form-box">
+                        <p class="body-format">Descripción resumida:</p>
+                        <input class="form-format" type="text" name="short_description" value="<%= locals.old && old.short_description %>"></input>
+                        <% if (locals.errors && errors.short_description) { %>
+                            <p class="feedback"><%= errors.short_description.msg %></p>
+                        <% } %>
+                    </div>
+                    <div class="form-box">                
+                        <label class="body-format">Elegir una foto para el Curso:</label>
+                        <input type="file" name="image" class="form-format">
+                        <% if (locals.errors && errors.image) { %>
+                            <p class="feedback"><%= errors.image.msg %></p>
+                        <% } %>
+                    </div>
+                    
+                    <div class="form-box">
+                        <label class="body-format">Descripcion del curso:</label>
+                        <textarea class="form-format detail" rows="3" name="long_description" value="<%= locals.old && old.long_description %>"></textarea>
+                        <% if (locals.errors && errors.long_description) { %>
+                            <p class="feedback"><%= errors.long_description.msg %></p>
+                        <% } %>
+                    </div>
+                    
+                    <div class="form-box">  
+                        <p class="body-format">Categorias:</p>              
+                        <select name="category_id" autocomplete="off" placeholder="Categoría del producto" class="form-format">
+                            <% for( category of categories ) { %>                                
+                                <option class="form-select" value=<%= category.id %>><%=category.category_name%></option>                                
+                                <% } %>
+                            </select>    
+                        </div>
+                        
+                        <div class="form-box">
+                            <label class="body-format">Conocimientos previos</label>
+                            <textarea class="form-format detail" rows="3" name="requirements" value="<%= locals.old && old.requirements %>"></textarea>
+                            <% if (locals.errors && errors.requirements) { %>
+                                <p class="feedback"><%= errors.requirements.msg %></p>
+                            <% } %>
+                        </div> 
+                        
+                        <div class="form-box">
+                            <label class="body-format">A quien está dirigido?</label>
+                            <textarea class="form-format detail" rows="3" name="who_can" value="<%= locals.old && old.who_can %>"></textarea>
+                            <% if (locals.errors && errors.who_can) { %>
+                                <p class="feedback"><%= errors.who_can.msg %></p>
+                            <% } %>
+                        </div>
+                        <div class="form-media">
+                            <div class="form-box">  
+                                <p class="body-format">Idioma del audio:</p>              
+                                <select name="audio_id" autocomplete="off" placeholder="Idioma del audio" class="form-format">
+                                    <% for( audioLang of audioLangs ) { %>                                
+                                        <option class="form-select" value=<%= audioLang.id %>><%=audioLang.audioLang%></option>                                
+                                    <% } %>
+                                </select>
+                            </div>
+                            <div class="form-box">  
+                                <p class="body-format">Idioma de los subtítulos:</p>
+                                <p class="body-format small">(Podés elegir más de uno)</p> 
+                                <div class="main-sub">             
+                                        <% for( subtitle of subtitles ) { %>                                
+                                            <input name="subtitle_id" type="checkbox" class="form-select-1" value=<%= subtitle.id %>><%=subtitle.ccLang%></input>                                
+                                        <% } %>
+                                </div>
+                            </div> 
+                        </div> 
+                            <div class="form-box">  
+                                <p class="body-format">Precio:</p>                
+                                <input type="number" name="price" autocomplete="off" 
+                                placeholder="Costo del curso" class="form-format " value="<%= locals.old && old.price %>">
+                                <div class="form-box">                
+                                    <input type="number" name="discount" autocomplete="off" 
+                                    placeholder="Descuento aplicado (%)" class="form-format " value="<%= locals.old && old.discount %>">
+                                    <% if (locals.errors && errors.price) { %>
+                                        <p class="feedback"><%= errors.price.msg %></p>
+                                    <% } %>
+                                    <% if (locals.errors && errors.discount) { %>
+                                        <p class="feedback"><%= errors.discount.msg %></p>
+                                    <% } %>
+                                </div>
+                                <p class="body-format">Moneda:</p>              
+                                <select name="currency_id" autocomplete="off" placeholder="Moneda" class="form-format">
+                                    <% for( currency of currencies ) { %>                                
+                                        <option class="form-select" value=<%= currency.id %>><%=currency.currency%></option>                                
+                                        <% } %>
+                                    </select>
+                                </div>
+                                
+                                
+                                <p class="body-format">Profesor:</p> 
+                                <div class="form-box">    
+                                    <input type="text" name="course_owner" autocomplete="off" 
+                                    placeholder="Docente del curso" class="form-format" value="<%= locals.old && old.course_owner %>">
+                                    <% if (locals.errors && errors.course_owner) { %>
+                                        <p class="feedback"><%= errors.course_owner.msg %></p>
+                                    <% } %>
+                                </div>
+                                
+                                <ul class="errores"></ul>
+                                
+                                <div class="form-box">
+                                    <p class="body-format" style="color: #fce130;">Confirma la carga del curso</p>
+                    </div>
+                </div>
+                <div class="secondari-forms-container">
+                    <div class="form-box">
+                            <button type="submit" class="buttons">Crear curso</button>
+                    </div>
+
+                    <div class="form-box">
+                        <button type="reset" class="buttons">Borrar</button>
+                    </div>
+                </div>    
+            </form>
+    </main>
+    <!-- Include Footer -->
+    <%- include ('../partials/footer.ejs') %>
+    <script src="/js/validationCourse.js"></script>
+</body>
+</html>

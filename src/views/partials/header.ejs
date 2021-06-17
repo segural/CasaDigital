@@ -1,0 +1,40 @@
+<header>
+    <div class="main-header">
+      <a href="/"><img src="/images/Logo.jpg" class="logo"></a>
+      <nav class="main-navbar">
+        <div class="navbar">
+          <ul>
+            <li><a href="/"><i class="fas fa-home"></i></a></li>
+            <li><a href="/" class="text-nav"> Inicio</a></li>
+            <li><a href="/products"><i class="fas fa-bars"></i></a></li>
+            <li><a href="/products" class="text-nav"> Productos</a></li>
+            <li><a href="/products/productCart"><i class="fas fa-plus"></i></a></li>
+            <li><a href="/products/productCart" class="text-nav"> Mi Lista</a></li>
+            <li>
+              <form action="/search" class="search" method="POST" id="form">
+                <li><a href="#"><i class="fas fa-search" id="lupita"></i></a></li>
+                <li><input type="text" class="text-nav-1" placeholder="Buscar" name="search" id="search"></li>
+                </form>
+            </li>            
+          </ul>
+        </div>
+        <% if (locals.userLogged != undefined) { %>
+          <div class="login">            
+            <form class="logout-form" action="/users/logout" method="POST" id="logout">
+              <button type="submit" class="buttons">Logout</button>
+            </form>
+            <a class="login" href="/users/userProfile">
+            <p id="nombre" class="login-parrafo">Hola <b><%= locals.userLogged.first_name %></b></p>
+            <img id="photo" class="user-thumb" src="/images/users/<%= locals.userLogged.image %>" alt="Imagen del Usuario">
+            </a>
+          </div>
+        <% } else { %>
+          <div class="login" id="login">
+            <a href="/users/login"><p class="login-parrafo">Login</p></a>
+            <i class="fas fa-user-graduate"></i>
+          </div>
+        <% } %>
+      </nav>
+    </div>
+    <script src="/js/headersearch.js"></script>
+  </header>

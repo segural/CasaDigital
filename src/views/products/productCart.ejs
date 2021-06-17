@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Include Head -->
+<%- include('../partials/head', {title: 'Casa Digital', stylesheet: "/css/productCart.css"}) %>
+<body>
+    <!-- Include Header -->
+    <%- include ('../partials/header.ejs') %>
+
+    <main>
+        <div class="container">
+            <section class="page-header">
+                <h1 class="cart-title">
+                    <i class="fas fa-list-ul"></i>
+                    Mi lista: 
+                </h1>
+                <span class="counter">
+                    <% if(products.length == 0) { %>
+                        <span class="counter">Aún no tienes cursos comprados</span>
+                    <% } else { if (products.length == 1) {%>
+                        <span class="counter"><%= products.length %> curso comprado</span>
+                        <%} else{ %>
+                        <span class="counter"><%= products.length %> cursos comprados</span>
+                    <%} }%>
+                </span>
+            </section> 
+            <section class="cart">
+                <div class="product">
+                    <div class="product-list">
+                        <% for( product of products ) { %>
+                            <div class="cart-list-item">
+                                <div class="row">
+                                    <div class="cart-item-img">
+                                        <img src="/images/products/<%= product.image %>" alt="Imagen del Curso">
+                                    </div>
+                                    <div class="column">
+                                        <div class="cart-item-detail">
+                                            <h3 class="cart-item-title">
+                                                <%= product.course_title %>
+                                            </h3>
+                                            <p class="cart-item-info">Un curso de: <%= product.course_owner %></p>
+                                        </div>                                        
+                                        <div class="cart-item-audio-subs">
+                                            <ul>
+                                                <li class="audio-subs-detail">
+                                                    <i class="fas fa-volume-up"></i>
+                                                    <%= product.audio.audioLang %>
+                                                </li>
+                                                <li class="audio-subs-detail">
+                                                    <i class="far fa-closed-captioning"></i>
+                                                    <% for (let i = 0; i < product.subtitles.length; i++) { %>
+                                                        <%= product.subtitles[i].ccLang %>
+                                                    <% } %>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="rating">
+                                            <p class="rating-text">Tu calificación</p>
+                                            <div class="stars">
+                                                <% for (let i = 0; i < product.course_user.rating; i++) { %>
+                                                    <span class="fa fa-star checked"></span>
+                                                <% } %>
+                                                <% for (let i = 0; i < (5 - product.course_user.rating); i++) { %>
+                                                    <span class="fa fa-star"></span>
+                                                <% } %>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                        
+                    </div>
+                </div>
+                <div class="cart-box-total">
+                    <div class="total-row">
+                        <div class="cart-checkout">
+                            <a class="btn-checkout" href="/">
+                                <span>Seguir comprando cursos</span>
+                                <i class="fas fa-long-arrow-alt-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- Include Footer -->
+    <%- include ('../partials/footer.ejs') %>
+</body>
+</html>

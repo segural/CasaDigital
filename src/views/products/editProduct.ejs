@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Include Head -->
+<%- include('../partials/head.ejs', {title: 'Casa Digital', stylesheet: "/css/editProduct.css"}) %>
+<body>
+    <!-- Include Header -->
+    <%- include ('../partials/header.ejs') %>
+
+    <main class="main-style">       
+        <h2 class="frase">Estas editando el curso: <%= productToEdit.course_title %></h2>
+
+            <form action="/products/<%= productToEdit.id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="main-form">   
+                <div class="main-forms-container">
+                    <div class="form-box">
+                        <label class="body-format">Titulo del curso</label>    
+                        <input type="text" name="course_title" autocomplete="off" 
+                        placeholder="Titulo del curso" class="form-format" value="<%= productToEdit.course_title %>">
+                        <% if (locals.errors && errors.course_title) { %>
+                            <p class="feedback"><%= errors.course_title.msg %></p>
+                        <% } %>
+                    </div>
+                    
+                    <div class="form-box">
+                        <p class="body-format">Descripción resumida:</p>
+                        <input class="form-format" type="text" name="short_description" value="<%= productToEdit.short_description %>">
+                        <% if (locals.errors && errors.short_description) { %>
+                            <p class="feedback"><%= errors.short_description.msg %></p>
+                        <% } %>
+                    </div>
+                    <div class="form-box">                
+                        <label class="body-format">Elegir una foto para el Curso:</label>
+                        <input type="file" name="image" accept=".jpg" class="form-format">
+                        <% if (locals.errors && errors.image) { %>
+                            <p class="feedback"><%= errors.image.msg %></p>
+                        <% } %>
+                    </div>
+
+                    <div class="form-box">
+                        <label class="body-format">Descripcion del curso:</label>
+                        <textarea class="form-format detail" rows="3" name="long_description"><%= productToEdit.long_description %></textarea>
+                        <% if (locals.errors && errors.long_description) { %>
+                            <p class="feedback"><%= errors.long_description.msg %></p>
+                        <% } %>
+                    </div>
+
+                    <div class="form-box">  
+                        <p class="body-format">Categorias:</p>              
+                        <select name="category_id" autocomplete="off" placeholder="Categoría del producto" class="form-format">
+                            <% for( category of categories ) { %>                                
+                                <option class="form-select" value=<%= category.id %> <%= productToEdit.category_id == category.id ? 'selected' :''%>><%=category.category_name%></option>
+                            <% } %>                            
+                        </select>    
+                    </div>
+
+                    <div class="form-box">
+                        <label class="body-format">Conocimientos previos</label>
+                        <textarea class="form-format detail" rows="3" name="requirements"><%= productToEdit.requirements %></textarea>
+                        <% if (locals.errors && errors.requirements) { %>
+                            <p class="feedback"><%= errors.requirements.msg %></p>
+                        <% } %>
+                    </div> 
+
+                    <div class="form-box">
+                        <label class="body-format">A quien está dirigido?</label>
+                        <textarea class="form-format detail" rows="3" name="who_can"><%= productToEdit.who_can %></textarea>
+                        <% if (locals.errors && errors.who_can) { %>
+                            <p class="feedback"><%= errors.who_can.msg %></p>
+                        <% } %>
+                    </div>
+                    <div class="form-media">
+                        <div class="form-box">  
+                            <p class="body-format">Idioma del audio:</p>              
+                            <select name="audio_id" autocomplete="off" placeholder="Idioma del audio" class="form-format">
+                                <% for( audioLang of audioLangs ) { %>                                
+                                    <option class="form-select" value=<%= audioLang.id %> <%= productToEdit.audio_id == audioLang.id ? 'selected' :''%> ><%=audioLang.audioLang%></option>                                
+                                <% } %>
+                            </select>    
+                        </div>
+                        <div class="form-box">  
+                            <p class="body-format">Idioma de los subtítulos:</p>
+                            <p class="body-format small">(Podés elegir más de uno)</p>  
+                            <div class="main-sub">             
+                                    <% for( subtitle of subtitles ) { %>                                
+                                        <input name="subtitle_id" type="checkbox" class="form-select-1" value=<%= subtitle.id %> <%= selectedSubtitles.includes(subtitle.id) ? 'checked' :'' %> ><%=subtitle.ccLang%></input>                                
+                                    <% } %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-box">
+                        <label class="body-format">Costo del curso</label>
+                        <input type="number" name="price" autocomplete="off" 
+                        placeholder="Costo del curso" class="form-format" value="<%= productToEdit.price %>">
+                        <% if (locals.errors && errors.price) { %>
+                            <p class="feedback"><%= errors.price.msg %></p>
+                        <% } %>
+                        <p class="body-format">Moneda:</p>              
+                        <select name="currency_id" autocomplete="off" placeholder="Moneda" class="form-format">
+                            <% for( currency of currencies ) { %>                                
+                                <option class="form-select" value=<%= currency.id %> <%= productToEdit.currency_id == currency.id ? 'selected' :''%>  ><%=currency.currency%></option>                                
+                            <% } %>
+                        </select>
+                    </div>
+
+                    <div class="form-box">
+                        <label class="body-format">Descuento aplicado (%)</label>
+                        <input type="number" name="discount" autocomplete="off" 
+                        placeholder="Descuento aplicado (%)" class="form-format" value="<%= productToEdit.discount %>">
+                    </div>
+                    <% if (locals.errors && errors.discount) { %>
+                        <p class="feedback"><%= errors.discount.msg %></p>
+                    <% } %>
+                    <div class="form-box">
+                        <label class="body-format">Docente del curso</label>
+                        <input type="text" name="course_owner" autocomplete="off" 
+                        placeholder="Docente del curso" class="form-format" value="<%= productToEdit.course_owner %>">
+                        <% if (locals.errors && errors.course_owner) { %>
+                            <p class="feedback"><%= errors.course_owner.msg %></p>
+                        <% } %>
+                    </div>
+
+                    <ul class="errores"></ul>
+
+                    <div class="form-box">
+                        <p class="body-format">Confirma la edición del curso</p>
+                    </div>
+                </div>
+                <div class="secondari-forms-container">
+                    <div class="form-box">
+                            <button type="submit" class="buttons">CONFIRMAR CAMBIOS</button>
+                    </div>
+                </div>    
+            </form>
+            <form class="form-box" action="/products/<%=productToEdit.id %>?_method=DELETE" method="POST" style="display: inline-flex">
+                <button type="submit" class="buttons">ELIMINAR CURSO</button>
+            </form>
+    </main>
+    <!-- Include Footer -->
+    <%- include ('../partials/footer.ejs') %>
+    <script src="/js/validationCourse.js"></script>
+</body>
+</html>

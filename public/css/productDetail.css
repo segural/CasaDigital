@@ -1,0 +1,232 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: black;
+}
+
+
+
+/* MAIN */
+
+main div.container {
+    padding: 0px 10px;
+    background-color: #161d20;
+    color: #e3ecfa;
+    align-items: center;
+    
+}
+h1 .main-title{
+    padding-top: 10px;
+}
+main .row {
+    display: flex;
+        
+}
+.row .col-der {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.course-image {    
+    order: -1;
+}
+.course-image img {
+    width: 100%;
+}
+.header-curso {
+    margin-top: 20px;
+}
+.top-seller {
+    padding: 5px;
+    color: #263238;
+    background-color:#fce130;
+    font-size: 12px;
+    font-weight: bold;
+}
+h4.main-subtitle {
+    display: none;
+}
+div.teacher-badge {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+div.teacher-badge img {
+    padding: 10px;
+    border-radius: 50%;
+}
+p.teachers-text {
+    font-size: 12px;
+}
+
+div.course-stats-mobile {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    font-size: 12px;
+    border-top: 1px solid #fce130;
+    padding-top: 20px;
+}
+.course-stats-mobile span {
+    padding: 5px;
+    display: block;
+}
+div.stat-lists {
+    display: flex;
+    flex-wrap: nowrap;
+    
+}
+.list-left, .list-right {
+    list-style:none;    
+    padding: 0px 5px;
+    width: 50%;
+}
+
+.gift {
+    padding: 20px;
+}
+.gift .gift-button{
+    padding: 5px;
+    color: #263238;
+    background-color:#fce130;
+    text-align: center;
+}
+.gift-button .fa-gift {
+    padding-right: 10px;
+
+}
+.course-presentation h4.Presentation {
+    padding-bottom: 10px;
+    
+}
+.course-presentation .content h4.titulo {
+    display: none;
+}
+.content p{
+    padding-bottom: 10px;
+}
+
+.course-presentation .Google img{
+    padding: 10px 0px;
+    width: 100%;
+}
+
+.Included h4.incluye {
+    padding-bottom: 10px;
+}
+.Included .content-table {
+    background-color: #263238;
+    border-radius: 5%;
+    font-size: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+.content-table span {
+    padding-bottom: 15px;
+}
+.content-list ul{    
+    list-style:none;   
+    
+}
+
+
+.Included .content-text p{
+    padding-bottom: 10px;
+}
+.directed-to h4.directed,
+.directed-text p,
+.requirements h4.required,
+.required-terxt p {
+    padding-bottom: 10px;
+}
+
+.required-image img {
+    padding: 10px 0px;
+    width: 100%;
+}
+.row .comprar{
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    background-color: #161d20;
+    opacity: 90%;
+}
+.comprar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0px;
+}
+.comprar .price-col {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    width: 50%;
+}
+.price-badges .badge {
+    padding: 0px 5px;
+    color: #263238;
+    background-color:#fce130;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 5px;
+}
+.price-badges .price-code,
+.price-badges .discounted-price {
+    text-decoration:line-through;
+}
+.price-col .item-price{
+    padding-top: 10px;
+    font-size: 21px;
+    font-weight: bold;
+}
+.comprar .cart-checkout{
+    display: flex;
+    padding: 5px 10px;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-checkout .btn-checkout {
+    padding: 5px 15px;
+    color: #263238;
+    background-color:#fce130;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    
+}
+
+.row .col-izq {
+    display: none;
+
+}
+
+
+
+@media (min-width: 641px) {    
+    
+    /* MAIN */   
+    
+    .row {
+        max-width: 641px;
+        margin: auto;
+    }
+    .row .comprar {
+        max-width: 641px;
+    }
+}
+
+@media (min-width: 769px) {
+    
+    
+}

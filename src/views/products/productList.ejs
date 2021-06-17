@@ -1,0 +1,36 @@
+<html lang="en">
+<!-- Include Head -->
+<%- include('../partials/head.ejs', {title: 'Admin - Productos', stylesheet: "/css/productList.css"}) %>
+<body>
+<!-- Include Header -->
+<%- include ('../partials/header.ejs') %>
+  <main>
+    <div class="main-contenedor">
+      <% for (category of categories) {%>
+        <div class="div-separadores">
+          <p class="separadores"><%= category.category_name %></p>
+        </div>
+        <div class="listado">
+          <% for (product of products) {%>
+            <% if (product.category_id == category.id) { 	%>
+              <div>
+                <div class="producto">
+                    <a href="/products/<%= product.id %>/edit/">
+                        <ul>
+                            <li>
+                                <%= product.course_title %> 
+                            </li>
+                        </ul>
+                    </a>
+                </div>
+              </div>
+            <% } %>            
+          <% } %>
+        </div>        
+      <% } %>     
+    </div>
+  </main>
+  <!-- Include Footer -->
+  <%- include ('../partials/footer.ejs') %>
+</body>
+</html>

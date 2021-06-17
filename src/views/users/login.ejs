@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Include Head -->
+<%- include('../partials/head.ejs', {title: 'Casa Digital', stylesheet: "/css/login.css"}) %>
+<body>
+<!-- Include Header -->
+<%- include ('../partials/header.ejs') %>
+    <main class="main-style"> 
+        <div class="diferent-logins">
+            <div class="facebook-inic"><a href="#" class="link"><i class="fab fa-facebook"></i>Entra con Facebook </a></div>
+            <div class="google-log"><a href="#" class="link"><i class="fab fa-google"></i>Entra con Google</a></div>
+        </div>
+
+        <div class="instructions-format">O entra con tu email</div>        
+            <form action="/users/login" method="POST" id="form" novalidate>
+                <% if (locals.errors && errors.noUser) { %>
+                    <p class="feedback"><%= errors.noUser.msg %></p>
+                <% } %>  
+                <div class="main-forms-container">
+                      
+                    <div>
+                        <input type="email" name="email" placeholder="Introduce tu correo electronico" class="form-format" id="email" value="<%= locals.old && old.email %>">
+                        <% if (locals.errors && errors.email) { %>
+                            <p class="feedback"><%= errors.email.msg %></p>
+                        <% } %>
+                    </div>               
+                    <div>  
+                        <input type="password" name="password" placeholder="Tu Contraseña" class="form-format" id="password" value="<%= locals.old && old.password %>">
+                        <% if (locals.errors && errors.password) { %>
+                            <p class="feedback"><%= errors.password.msg %></p>
+                        <% } %>
+                    </div>                    
+                </div>
+                
+                <div class="instructions-format"><a href="#" class="link">¿Olvidaste tu contraseña?</a></div>
+                <div>
+                    <button type="submit" class="entry-button">Entra</button>
+                </div>
+                <div class="rememberMe-container">
+                    <label for="rememberMe" class="instructions-format">Recordame</label>
+                    <input type="checkbox" name="rememberMe">
+                </div>
+            </form>
+        <div class="instructions-crear">¿No tienes cuenta? <a href="/users/register" class="link">Crear cuenta</a></div>        
+    </main>
+  <!-- Include Footer -->  
+  <%- include ('../partials/footer.ejs') %>
+  <!-- <script src="/js/validacionUser.js"></script> -->
+</body>
+</html>
