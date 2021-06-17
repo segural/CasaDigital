@@ -38,9 +38,7 @@ app.use("/users", usersRoutes);
 app.use('/products', productsRoutes);
 app.use('/api', apiRoutes);
 
-
-
-//levanto server express en puerto 8000
-app.listen (8000, () => {
-    console.log ('Servidor corriendo en puerto 8000');
-})
+//levanto server express en puerto 3000
+app.listen (process.env.PORT || 3000, function () {
+    console.log ('Servidor corriendo en puerto 3000');
+});
