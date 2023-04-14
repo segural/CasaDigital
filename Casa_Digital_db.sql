@@ -1,4 +1,4 @@
-USE `lgsegura_casadigital`;
+USE `casadigital`;
 -- MySQL dump 10.13  Distrib 8.0.18, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: casa_digital_db
